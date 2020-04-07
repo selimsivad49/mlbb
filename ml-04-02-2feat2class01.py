@@ -22,8 +22,10 @@ X = X[y!=2]
 y = y[y!=2]
 
 # 分類用にサポートベクトルマシン (Support Vector Classifier) を用意
+# C:境界を決める際のペナルティの寄与の大きさ。大きいほど誤認識の点や境界線上の点へのペナルティが大きい→ハードマージン
+# linear;線形
 clf = svm.SVC(C=1.0, kernel='linear')
-# データに最適化
+# データに最適化→境界線が定まる
 clf.fit(X, y)
 
 ##### 分類結果を背景の色分けにより表示
@@ -39,7 +41,10 @@ y_max = max(X[:,1]) + 1
 # グラフ表示エリアを縦横500ずつのグリッドに区切る
 # (分類クラスに応じて背景に色を塗るため)
 XX, YY = np.mgrid[x_min:x_max:500j, y_min:y_max:500j]
-
+print(XX)
+print(YY)
+print(XX.ravel())
+print(YY.ravel())
 # グリッドの点をscikit-learn用の入力に並べなおす
 Xg = np.c_[XX.ravel(), YY.ravel()]
 
